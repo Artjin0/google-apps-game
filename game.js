@@ -12,8 +12,7 @@ window.onload = function () {
 
     var fPS = 30;
     setInterval(window.updateAll, 1000 / fPS);
-    canvasContext.fillStyle = 'black';
-    canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
 };
 
 function updateAll() {
