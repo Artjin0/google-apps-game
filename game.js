@@ -1,7 +1,9 @@
 /*jslint browser, devel*/
 /*global window*/
 var ballX = 75;
+var ballY = 75;
 var ballSpeedX = 5;
+var ballSpeedY = 7;
 var canvas, canvasContext;
 window.onload = function () {
     "use strict";
@@ -10,23 +12,32 @@ window.onload = function () {
 
     var fPS = 30;
     setInterval(window.updateAll, 1000 / fPS);
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 };
 
 function updateAll() {
     "use strict";
     ballX += ballSpeedX;
-    // console.log(ballX)
+    ballY += ballSpeedY;
+
     if (ballX > canvas.width) {
         ballSpeedX *= -1;
     }
-    if (ballX < 1) {
-        ballSpeedX += 1;
+    if (ballX < 0) {
+        ballSpeedX *= -1;
+    }
+    if (ballY > canvas.height) {
+        ballSpeedY *= -1;
+    }
+    if (ballY < 0) {
+        ballSpeedY *= -1;
     }
     canvasContext.fillStyle = 'black';
     canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
     canvasContext.fillStyle = 'white';
     canvasContext.beginPath();
-    canvasContext.arc(ballX, 100, 10, 0, Math.PI * 2, true);
+    canvasContext.arc(ballX, ballY, 10, 0, Math.PI * 2, true);
     canvasContext.fill();
 }
