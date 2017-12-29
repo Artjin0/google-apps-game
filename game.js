@@ -15,7 +15,6 @@ function ballReset() {
     "use strict";
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
-
 }
 
 function updateMousePos(evt) {
@@ -37,10 +36,7 @@ window.onload = function () {
     setInterval(window.updateAll, 1000 / fPS);
 
     canvas.addEventListener("mousemove", updateMousePos);
-
 };
-
-
 
 function moveAll() {
     "use strict";
@@ -61,8 +57,6 @@ function moveAll() {
         ballSpeedY *= -1;
     }
 }
-
-
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
     "use strict";
