@@ -6,6 +6,7 @@ var ballSpeedX = 5;
 var ballSpeedY = 7;
 const PADDLE_WIDTH = 100;
 const PADDLE_THICKNESS = 10;
+const PADDLE_DIST_FROM_EDGE = 60;
 var paddleX = 400;
 
 var canvas, canvasContext;
@@ -27,20 +28,6 @@ function updateMousePos(evt) {
     paddleX = mouseX - PADDLE_WIDTH;
 }
 
-window.onload = function () {
-    "use strict";
-    canvas = document.getElementById('gameCanvas');
-    canvasContext = canvas.getContext('2d');
-
-    var fPS = 30;
-    setInterval(window.updateAll, 1000 / fPS);
-
-    canvas.addEventListener('mousemove', updateMousePos);
-
-};
-
-
-
 function moveAll() {
     "use strict";
     ballX += ballSpeedX;
@@ -54,13 +41,30 @@ function moveAll() {
     }
     if (ballY > canvas.height) { //bottom
         ballReset();
-        //ballSpeedY *= -1;
     }
     if (ballY < 0) { //top
         ballSpeedY *= -1;
+        console.log(ballY);
+    }
+
+    var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
+    var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
+    var paddleLeftEdgeX = paddleX;
+    var paddleRightEdgeX = paddleLeftEdgeX + PADDLE_WIDTH;
+
+    if (
+        ballY > paddleTopEdgeY &&
+        ballY < paddleBottomEdgeY &&
+        ballX > paddleLeftEdgeX &&
+        ballX < paddleRightEdgeX
+    ) {
+
+        ballSpeedY *= -1;
+        var centerOfPaddleX = paddleX + PADDLE_WIDTH / 2;
+        var ballDistPromCenterOfPaddleX = ballX - centerOfPaddleX;
+        ballSpeedX = ballDistPromCenterOfPaddleX * 0.5;
     }
 }
-
 
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
@@ -80,8 +84,8 @@ function colorCircle(centerX, centerY, radius, fillColor) {
 function drawAll() {
     "use strict";
     colorRect(0, 0, canvas.width, canvas.height, 'black');
-    colorCircle(ballX, ballY, 10, 'white');
-    colorRect(paddleX, canvas.height - PADDLE_THICKNESS, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+    colorCircle(ballX, ballY, 10, 'blue');
+    colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'yellow');
 
 }
 
@@ -90,3 +94,15 @@ function updateAll() {
     moveAll();
     drawAll();
 }
+
+window.onload = function () {
+    "use strict";
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    var fPS = 30;
+    setInterval(updateAll, 1000 / fPS);
+
+    canvas.addEventListener('mousemove', updateMousePos);
+
+};
