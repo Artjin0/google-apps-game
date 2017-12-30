@@ -28,20 +28,6 @@ function updateMousePos(evt) {
     paddleX = mouseX - PADDLE_WIDTH;
 }
 
-<<<<<<< HEAD
-window.onload = function () {
-    "use strict";
-    canvas = document.getElementById("gameCanvas");
-    canvasContext = canvas.getContext("2d");
-
-    var fPS = 30;
-    setInterval(window.updateAll, 1000 / fPS);
-
-    canvas.addEventListener("mousemove", updateMousePos);
-};
-
-=======
->>>>>>> d92fec4cdd8cb9de39d935d4ed2aeac2a1b479c2
 function moveAll() {
     "use strict";
     ballX += ballSpeedX;
@@ -61,8 +47,6 @@ function moveAll() {
         console.log(ballY);
     }
 
-<<<<<<< HEAD
-=======
     var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
     var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
     var paddleLeftEdgeX = paddleX;
@@ -83,7 +67,6 @@ function moveAll() {
 }
 
 
->>>>>>> d92fec4cdd8cb9de39d935d4ed2aeac2a1b479c2
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
     "use strict";
     canvasContext.fillStyle = fillColor;
@@ -100,15 +83,9 @@ function colorCircle(centerX, centerY, radius, fillColor) {
 
 function drawAll() {
     "use strict";
-<<<<<<< HEAD
-    colorRect(0, 0, canvas.width, canvas.height, "black");
-    colorCircle(ballX, ballY, 10, "white");
-    colorRect(paddleX, canvas.height - PADDLE_THICKNESS, PADDLE_WIDTH, PADDLE_THICKNESS, "white");
-=======
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorCircle(ballX, ballY, 10, 'blue');
     colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'yellow');
->>>>>>> d92fec4cdd8cb9de39d935d4ed2aeac2a1b479c2
 
 }
 
