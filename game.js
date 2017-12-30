@@ -9,13 +9,13 @@ const PADDLE_THICKNESS = 10;
 const PADDLE_DIST_FROM_EDGE = 60;
 var paddleX = 400;
 
-var canvas, canvasContext;
+var canvas;
+var canvasContext;
 
 function ballReset() {
     "use strict";
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
-
 }
 
 function updateMousePos(evt) {
@@ -83,9 +83,9 @@ function colorCircle(centerX, centerY, radius, fillColor) {
 
 function drawAll() {
     "use strict";
-    colorRect(0, 0, canvas.width, canvas.height, 'black');
-    colorCircle(ballX, ballY, 10, 'blue');
-    colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'yellow');
+    colorRect(0, 0, canvas.width, canvas.height, "black");
+    colorCircle(ballX, ballY, 10, "blue");
+    colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, "yellow");
 
 }
 
@@ -97,12 +97,12 @@ function updateAll() {
 
 window.onload = function () {
     "use strict";
-    canvas = document.getElementById('gameCanvas');
-    canvasContext = canvas.getContext('2d');
+    canvas = document.getElementById("gameCanvas");
+    canvasContext = canvas.getContext("2d");
 
     var fPS = 30;
     setInterval(updateAll, 1000 / fPS);
 
-    canvas.addEventListener('mousemove', updateMousePos);
+    canvas.addEventListener("mousemove", updateMousePos);
 
 };
