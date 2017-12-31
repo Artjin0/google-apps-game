@@ -18,13 +18,16 @@ function ballReset() {
 
 }
 
+var mouseX = 0;
+var mouseY = 0;
+
 function updateMousePos(evt) {
     "use strict";
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
 
-    var mouseX = evt.clientX - rect.left - root.scrollLeft;
-    //var mouseY = evt.clientY - rect.top - root.scrollTop;
+    mouseX = evt.clientX - rect.left - root.scrollLeft;
+    mouseY = evt.clientY - rect.top - root.scrollTop;
     paddleX = mouseX - PADDLE_WIDTH;
 }
 
@@ -66,6 +69,11 @@ function moveAll() {
     }
 }
 
+function colorText(showWords, textX, textY, fillColor) {
+    "use strict";
+    canvasContext.fillStyle = fillColor;
+    canvasContext.fillText(showWords, textX, textY);
+}
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
     "use strict";
@@ -86,6 +94,7 @@ function drawAll() {
     colorRect(0, 0, canvas.width, canvas.height, 'black');
     colorCircle(ballX, ballY, 10, 'blue');
     colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'yellow');
+    colorText(mouseX + "," + mouseY, mouseX, mouseY, 'yellow');
 
 }
 
